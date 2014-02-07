@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>annyang testing!</title>
+  <meta charset="utf-8" />
+  <meta name="description" content="Test of annyang controlling computer by voice" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="annyang.min.js"></script>
+  <script src="jquery.min.js"></script>
+  <script>
+  "use strict";
+  var str='You said : ';
+  if (annyang) {
+
+    var hello = function() {
+      $('#listen').slideDown();
+      $('#listen').text(str.concat('« Hello »'));
+      $('#output').text('Hello !');
+
+    };
+
+    var clear =function(){
+          $('#listen').slideDown();
+          $('#listen').text('Listening to your command...')
+          $('#output').text('');
+
+    }
+      
+    var find = function(file){
+          var data={};
+          data.file=file;
+          data.message="execute";
+          data.func="find";
+          execute(data);
+          $('#listen').slideDown();
+          $('#output').text('');
+          $('#listen').text(str.concat('«find ', file,'»'));
+
+    }
+    var commands = {
+      'hello (there)': hello, 
+      'find *search': find,
+      'show': clear
+      };
+    // Initialize annyang with our commands
+    annyang.init(commands);
+
+    // Start listening. You can call this here, or attach this call to an event, button, etc.
+    annyang.start();
+  }
+  var scrollTo = function(identifier, speed) {
+    $('html, body').animate({
+        scrollTop: $(identifier).offset().top
+    }, speed || 1500);
+  }
+
+  var execute= function(commands){
+  
+  $.ajax('http://localhost:3000/execute', {
+                  type: 'POST',
+                  data: JSON.stringify(commands),
+                  contentType: 'application/json',
+                  success: function(out) { console.log(out); $('#output').html(out);},
+                  error  : function() { console.log('error');}
+          });
+  }
+  </script>
+
+</head>
+<body>
+<div id="wrap">
+<header>
+<nav>
+    <ul>
+        <li id="webcon">Web Controller 0.0 </li>
+        <li class="active"><a href= "index.html">Home</a></li>
+        <li><a href= "about.html">About</a></li>
+    </ul>
+</nav>
+</header>
+<section>
+<h3><span id="listen">Listening to your command...</span></h3>
+
+<div id="output">
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consequat porta nulla, id dapibus dolor laoreet ac. Praesent non enim eget erat dignissim aliquet. Phasellus sit amet sapien tortor. Maecenas vel mi ac risus feugiat aliquet ut a massa. Nullam pretium eros lorem, a convallis turpis imperdiet in. Vivamus sed tellus dolor. Cras metus urna, sagittis eget nisl gravida, aliquet consectetur justo. In id lorem tincidunt, varius ligula vitae, pretium sem. Maecenas massa elit, porta at ullamcorper consequat, convallis ut libero.
+
+Donec fermentum ligula vel odio condimentum egestas. Quisque quis nisl et nulla eleifend congue ullamcorper sed eros. Fusce egestas nisi tempus, feugiat est ut, viverra massa. Integer rhoncus felis id pretium suscipit. Phasellus eget pulvinar dolor. Nullam vulputate tellus eu sagittis hendrerit. Fusce at justo velit. Vestibulum luctus, arcu sit amet facilisis vulputate, massa quam viverra leo, sit amet vulputate lorem felis ut nibh. Nulla dictum augue justo, vel sollicitudin erat iaculis at. Suspendisse dolor massa, laoreet nec neque at, tincidunt varius elit. Aenean faucibus pharetra dui nec convallis. Nulla tincidunt sollicitudin metus at aliquet. Nulla pretium enim ligula, ultrices interdum risus dictum sed.
+
+Fusce gravida dictum ultricies. Nunc pellentesque nulla nec dapibus facilisis. Proin sollicitudin gravida odio, sed pellentesque lacus viverra at. Praesent vel risus vitae elit commodo ornare. Morbi cursus vestibulum leo ut gravida. Fusce congue tincidunt libero, at porttitor odio cursus nec. Morbi sed mollis est, eu cursus neque. Aenean euismod erat nec facilisis viverra. Fusce sit amet cursus eros.
+</p>
+</div>
+</section>
+</div>
+<footer>
+</footer>
+</body>
+</html>

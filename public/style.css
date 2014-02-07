@@ -1,0 +1,167 @@
+/**
+ * style.css , WebController font-style
+ * Copyright (c), Emmanuel Noutahi
+ */
+
+*{
+    margin:0;
+ }
+
+html,body{height:100%;   word-wrap: normal;
+  webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -o-hyphens: auto;
+  hyphens: auto;
+  overflow: auto;
+      scrollbar-base-color:#ffeaff;}
+#wrap{
+  min-height:100%;
+  height:auto !important;
+  margin-bottom:-165px;
+  min-width: 100%;
+}
+
+header{
+    background-color:#4F437D;
+    text-align: center;
+    font-family: "Montserrat", Helvetica, sans-serif;
+    color:white;
+}
+
+.title{
+        padding: 5px 10px 80px;
+        margin-top: 40px;
+}
+.title em{
+    font-size: 60px;
+    font-weight: 600;
+    margin: 70px 0 70px;
+
+}
+.title h3{
+    padding-top:40px;
+    font-family: Verdana, sans-serif;
+    opacity:0.85;
+}
+mark{
+    font-size:.5em;
+    vertical-align: super;   
+}
+
+
+nav ul{
+    padding: 12px 25px;
+    text-align:left;
+    border-bottom: 2px groove #807FA9 ;
+}
+
+nav ul li{
+    display: inline-block;
+}
+
+nav ul li a{
+    border: 2px hidden;
+    border-radius: 4px;
+    padding:13px 20px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8em;
+    color:#EFEFF6;
+}
+
+
+li a:hover{
+    background: white;
+    font-family: "Baskerville", "Avenir", sans-serif;
+    color: black;
+    font-size: 0.9em;
+    text-decoration: none;
+}
+
+li a:active{
+    background: #908FBC;
+    text-decoration: underline;
+
+}
+
+.social{
+    min-height: 30px;
+    background-color: #EFECF7;
+    padding: 10px 20px 10px;
+}
+#webcon{
+    padding-right:6px;
+    font-weight: 600;
+    font-size: 1.05em;
+    padding:0px 15px;
+    
+}
+
+#output{
+    margin-bottom:40px;
+    text-align: justify;
+}
+
+section h2{
+        font-size:37px;
+        font-family: helvetica,"Droid Sans","Baskerville",sans-serif;
+        font-weight:400;margin:20px 0;
+
+}
+section em{font-weight:800;margin-right:8px}
+
+section h3{
+        font-size:1.3em;
+        font-weight:400;margin:20px 0;
+        font-family: "Droid Sans","Baskerville",sans-serif;
+}
+
+a{
+    padding-left: 20px;
+    text-decoration: none;
+}
+
+
+section {
+    padding:50px 60px;
+    font-family: Helvetica, "Clarendon", sans-serif;
+    font-size: 1.2em;
+    margin-left: 30px;
+  }
+
+span code{
+
+    font-style: italic;
+    background-color: #453872;
+    border: 0.4em double white;
+    color: #F7F7F7;
+    text-align: left;
+    padding: 6px 20px;
+    display:inline-block;
+    clear:both;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    width: 60%;
+    margin: auto 15px;
+    margin-bottom: 25px;
+}
+
+b{
+    font-style: normal;
+}
+
+span ul{
+list-style-type: decimal;
+font-style:italic; font-family:Georgia, Times, serif; 
+margin-left: 15px;
+}
+
+span li{
+    margin:15px auto;
+    font-size:24px;
+    padding:8px; border-left: 1px solid #999;
+}
+.hidden{display:none}
+

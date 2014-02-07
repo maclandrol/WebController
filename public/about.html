@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>annyang testing!</title>
+  <meta charset="utf-8" />
+  <meta name="description" content="Test of annyang controlling computer by voice" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="annyang.min.js"></script>
+  <script src="jquery.min.js"></script>
+  <script>
+  "use strict";
+  if (annyang) {
+    var hello = function() {
+    $("#output").slideDown();
+    $('#output').text('Hello !');
+
+    };
+      
+    var find = function(file){
+          var data={};
+          data.title=file;
+          data.message="execute"
+          execute(data);
+          $('#output').text('Finding');
+
+    }
+    var commands = {
+      'hello (there)': hello, 
+      'find *search': find
+      };
+    // Initialize annyang with our commands
+    annyang.init(commands);
+
+    // Start listening. You can call this here, or attach this call to an event, button, etc.
+    annyang.start();
+  }
+  var scrollTo = function(identifier, speed) {
+    $('html, body').animate({
+        scrollTop: $(identifier).offset().top
+    }, speed || 1500);
+  }
+
+  var execute= function(data){
+  
+  $.ajax('http://localhost:3000/execute', {
+                  type: 'POST',
+                  data: JSON.stringify(data),
+                  contentType: 'application/json',
+                  success: function(out) { console.log(out);},
+                  error  : function() { console.log('error');}
+          })
+  }
+  </script>
+
+</head>
+<body>
+<div id="wrap">
+
+<header>  
+  <nav>
+    <ul>
+        <li id="webcon">Web Controller 0.0 </li>
+        <li class="active"><a href= "index.html">Home</a></li>
+        <li><a href= "about.html">About</a></li>
+    </ul>
+</nav>
+  
+  <div class="title">
+    <h1><em>WebController, making you lazier!</em></h1>
+    <h3>This is a demo test! <mark>And my css sucks</mark></h2><br>
+    </div>
+</header>
+
+<div class="social">
+     <a href="#">Facebook</a> <a href="#">Reddit</a>  <a href="#">Feedly</a>  <a href="#">Youtube</a> 
+</div>
+<section>
+<div id="output">
+  <p><h2>What is <em>WebController</em>?</h2> </p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent onsequat porta nulla, id dapibus dolor laoreet ac. Praesent non enim eget erat dignissim aliquet. Phasellus sit amet sapien tortor. Maecenas vel mi ac risus feugiat aliquet ut a massa. Nullam pretium eros lorem, a convallis turpis imperdiet in. ivamus sed tellus dolor. Cras metus urna, sagittis eget nisl gravida, aliquet consectetur justo. In id lorem tincidunt, varius ligula vitae, pretium sem. Maecenas massa elit, porta at ullamcorper consequat, convallis ut libero. Donec fermentum ligula vel odio condimentum egestas. Quisque quis nisl et nulla eleifend congue ullamcorper sed eros. Fusce egestas nisi tempus, feugiat est ut, viverra massa. </p>
+  <p><h2>So <em>WebController</em> will help you do those shits</h2> </p>
+  </div>
+  <span>
+  <ul>
+    <li>Greeting you</li>
+    <code><b>Say</b> "Hello"</code>
+    <li>Finding file on your computer</li>
+    <code><b>Find</b> file</code>
+    <li>Search on internet for you</li>
+    <code><b>Search Music|Image|Text</b> keyworld </code>
+    <li>Delete File on your Computer</li>
+    <code><b>Delete</b> file</code>
+    <li>List Directory</li>
+    <code><b>List</b> directory</code>
+    <li>Execute scripts on your computer</li>
+    <code><b>Execute</b> script</code>
+    <li>Send file Using PushBullet</li>
+    <code><b>Push</b> this <b>To</b> friend</code>
+    <li>Show text file from your computer</li>
+    <code><b>Show</b> fileName</code>
+    <li>Open you a well known site</li>
+    <code><b>Open</b> siteName</code>
+  </ul>
+  <span>
+</section>
+</div>
+<footer>
+</footer>
+</body>
+</html>
