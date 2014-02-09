@@ -20,10 +20,17 @@
 
     };
 
-    var clear =function(){
+    var show =function(){
           $('#listen').slideDown();
-          $('#listen').text('Listening to your command...')
+          $('#listen').text(str.concat('« choice »'));
           $('#output').text('');
+
+    }
+
+    var select =function(number){
+          $('#listen').slideDown();
+          $('#listen').text(str.concat('«show me ',number,'»'));
+          $('#output').text(number);
 
     }
       
@@ -41,7 +48,8 @@
     var commands = {
       'hello (there)': hello, 
       'find *search': find,
-      'show': clear
+      'choice': show,
+      'show me *number': select
       };
     // Initialize annyang with our commands
     annyang.init(commands);
